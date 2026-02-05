@@ -1,0 +1,86 @@
+{
+  "name": "Parallel Workflow Example",
+  "version": "1.0.0",
+  "description": "A workflow demonstrating parallel execution",
+  "metadata": {
+    "author": "ReasonFlow Team",
+    "tags": ["example", "parallel", "concurrent"]
+  },
+  "inputs": [
+    {
+      "name": "items",
+      "type": "array",
+      "description": "List of items to process",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "results",
+      "type": "array",
+      "description": "Processed results"
+    }
+  ],
+  "steps": [
+    {
+      "id": "parallel_processing",
+      "name": "Parallel Processing",
+      "type": "parallel",
+      "description": "Process multiple items in parallel",
+      "branches": [
+        {
+          "steps": [
+            {
+              "id": "process_branch_1",
+              "type": "action",
+              "action": "processing.branch1",
+              "inputs": {
+                "data": "${items}"
+              }
+            }
+          ]
+        },
+        {
+          "steps": [
+            {
+              "id": "process_branch_2",
+              "type": "action",
+              "action": "processing.branch2",
+              "inputs": {
+                "data": "${items}"
+              }
+            }
+          ]
+        },
+        {
+          "steps": [
+            {
+              "id": "process_branch_3",
+              "type": "action",
+              "action": "processing.branch3",
+              "inputs": {
+                "data": "${items}"
+              }
+            }
+          ]
+        }
+      ],
+      "next": "aggregate_results"
+    },
+    {
+      "id": "aggregate_results",
+      "name": "Aggregate Results",
+      "type": "action",
+      "action": "aggregation.combine",
+      "inputs": {
+        "branch1": "${parallel_processing.branch1.result}",
+        "branch2": "${parallel_processing.branch2.result}",
+        "branch3": "${parallel_processing.branch3.result}"
+      },
+      "outputs": {
+        "results": "aggregated"
+      },
+      "next": null
+    }
+  ]
+}
