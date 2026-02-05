@@ -1,0 +1,61 @@
+{
+  "name": "Simple Workflow Example",
+  "version": "1.0.0",
+  "description": "A simple example workflow demonstrating basic actions",
+  "metadata": {
+    "author": "ReasonFlow Team",
+    "tags": ["example", "basic", "tutorial"]
+  },
+  "inputs": [
+    {
+      "name": "username",
+      "type": "string",
+      "description": "The username to process",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "type": "string",
+      "description": "The result of the workflow"
+    }
+  ],
+  "steps": [
+    {
+      "id": "validate_input",
+      "name": "Validate Input",
+      "type": "action",
+      "description": "Validate the input username",
+      "action": "validation.validateUsername",
+      "inputs": {
+        "username": "${username}"
+      },
+      "outputs": {
+        "isValid": "validation.result"
+      },
+      "next": "process_user",
+      "timeout": 5000,
+      "retry": {
+        "maxAttempts": 2,
+        "backoff": "fixed",
+        "delay": 1000
+      }
+    },
+    {
+      "id": "process_user",
+      "name": "Process User",
+      "type": "action",
+      "description": "Process the validated user",
+      "action": "user.process",
+      "inputs": {
+        "username": "${username}",
+        "validated": "${validate_input.isValid}"
+      },
+      "outputs": {
+        "processResult": "result"
+      },
+      "next": null
+    }
+  ]
+}

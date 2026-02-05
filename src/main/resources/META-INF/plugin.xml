@@ -1,0 +1,53 @@
+<idea-plugin>
+    <id>com.reasonflow.jetbrains</id>
+    <name>ReasonFlow</name>
+    <vendor email="support@reasonflow.com" url="https://github.com/dylanturn/reasonflow-jetbrains">ReasonFlow</vendor>
+
+    <description><![CDATA[
+    ReasonFlow IDE extension for JetBrains IDEs. This plugin provides comprehensive support for developing ReasonFlow workflows including:
+    <ul>
+        <li>Syntax highlighting for ReasonFlow workflow files</li>
+        <li>JSON schema validation for workflow definitions</li>
+        <li>Code completion for workflow elements</li>
+        <li>File type support for .reasonflow files</li>
+        <li>Quick documentation and error checking</li>
+    </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <h2>1.0.0</h2>
+    <ul>
+        <li>Initial release</li>
+        <li>Support for ReasonFlow workflow files</li>
+        <li>JSON schema validation</li>
+        <li>Syntax highlighting and code completion</li>
+    </ul>
+    ]]></change-notes>
+
+    <!-- Product and plugin compatibility requirements -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- File Type -->
+        <fileType
+            name="ReasonFlow"
+            implementationClass="com.reasonflow.ReasonFlowFileType"
+            fieldName="INSTANCE"
+            language="JSON"
+            extensions="reasonflow"/>
+
+        <!-- JSON Schema mapping -->
+        <json.jsonSchemaProviderFactory implementation="com.reasonflow.ReasonFlowSchemaProviderFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action
+            id="com.reasonflow.NewWorkflow"
+            class="com.reasonflow.actions.NewWorkflowAction"
+            text="ReasonFlow Workflow"
+            description="Create a new ReasonFlow workflow file">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+        </action>
+    </actions>
+</idea-plugin>

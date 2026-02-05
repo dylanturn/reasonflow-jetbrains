@@ -1,0 +1,61 @@
+{
+  "name": "Decision Workflow Example",
+  "version": "1.0.0",
+  "description": "A workflow demonstrating decision branching",
+  "metadata": {
+    "author": "ReasonFlow Team",
+    "tags": ["example", "decision", "branching"]
+  },
+  "inputs": [
+    {
+      "name": "age",
+      "type": "number",
+      "description": "The age to check",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "The age category"
+    }
+  ],
+  "steps": [
+    {
+      "id": "check_age",
+      "name": "Check Age",
+      "type": "decision",
+      "description": "Determine age category",
+      "condition": "${age} >= 18",
+      "onSuccess": "adult_process",
+      "onFailure": "minor_process"
+    },
+    {
+      "id": "adult_process",
+      "name": "Process Adult",
+      "type": "action",
+      "action": "category.setAdult",
+      "inputs": {
+        "age": "${age}"
+      },
+      "outputs": {
+        "category": "result"
+      },
+      "next": null
+    },
+    {
+      "id": "minor_process",
+      "name": "Process Minor",
+      "type": "action",
+      "action": "category.setMinor",
+      "inputs": {
+        "age": "${age}"
+      },
+      "outputs": {
+        "category": "result"
+      },
+      "next": null
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "${NAME}",
+  "version": "1.0.0",
+  "description": "A new ReasonFlow workflow",
+  "metadata": {
+    "author": "${USER}",
+    "tags": []
+  },
+  "inputs": [],
+  "outputs": [],
+  "steps": [
+    {
+      "id": "step1",
+      "name": "First Step",
+      "type": "action",
+      "action": "example.action",
+      "inputs": {},
+      "outputs": {},
+      "next": null
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Except gradle wrapper jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# macOS
+.DS_Store
+
+# Plugin build output
+build/distributions/
+
+# Temporary files
+/tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Downloaded Gradle distributions
+gradle-8.2.1/
+gradle*.zip
