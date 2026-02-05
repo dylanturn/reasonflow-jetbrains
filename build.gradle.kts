@@ -17,7 +17,7 @@ dependencies {
 
 // Configure Gradle IntelliJ Plugin
 intellij {
-    version.set("2023.1.5")
+    version.set("2023.2.5")
     type.set("IC") // Target IDE Platform
     plugins.set(listOf(/* Plugin Dependencies */))
 }
@@ -34,8 +34,8 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("231")
-        untilBuild.set("241.*")
+        sinceBuild.set("232")
+        untilBuild.set("242.*")
     }
 
     signPlugin {
